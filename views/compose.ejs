@@ -1,0 +1,66 @@
+<%- include("partials/header") -%>
+
+<div id="form-container" class="container">
+  <form action="/compose" method="post" style="margin-top: 10px">
+
+    <div class="form-group">
+      <label for="postTitle">Title</label>
+      <input type="hidden" name="Id" value=<%= postId %>>
+      <input type="text" name="Title" class="form-control" autocomplete="off" value=<%= title %>>
+    </div>
+
+    <div class="form-group">
+      <label for="postContentHTML">Content</label>
+      <input type="hidden" name="postContentHTML">
+      <input type="hidden" name="postContentText">
+      <div id="editor" style="height: 300px">
+        <%- content %>
+      </div>
+    </div>
+
+    <button type="submit" class="btn" name="publish">Publish</button>
+
+  </form>
+</div>
+
+<!-- Include the Quill library -->
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+
+  <script>
+    var toolbarOptions = [
+                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                ['blockquote', 'code-block'],
+
+                [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                [{ 'direction': 'rtl' }],                         // text direction
+
+                [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                [ 'link', 'image', 'video', 'formula' ],          // add's image support
+                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                [{ 'font': [] }],
+                [{ 'align': [] }],
+
+                ['clean']                                         // remove formatting button
+            ];
+
+    var options = {
+      theme: 'snow',
+      modules: { toolbar: toolbarOptions }
+    };
+    var editor = new Quill('#editor', options);
+    var publishBtn = document.getElementsByName("publish")[0];
+    publishBtn.onclick = function() {
+      var postContentHTML = document.getElementsByName("postContentHTML")[0];
+      postContentHTML.value = editor.root.innerHTML.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+      var postContentText = document.getElementsByName("postContentText")[0];
+      postContentText.value = editor.getText();
+    };
+  </script>
+
+<%- include("partials/footer") -%>

@@ -1,0 +1,11 @@
+<%- include("partials/header") -%>
+
+<h1 style="color: #5555ff">Editing...</h1><br>
+
+<% postList.forEach(function(post) { %>
+  <h1> <%= post.title %> </h1>
+  <p style="display: inline"> <%= post.contentText.substring(0,100)+" ..." %> </p>
+  <a href="/edit/<%= post._id %>">edit</a>
+<% }); %>
+
+<%- include("partials/footer") -%>

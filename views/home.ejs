@@ -1,0 +1,12 @@
+<%- include("partials/header") -%>
+
+<h1> <%= title %> </h1>
+<p> <%= startingContent %> </p>
+
+<% postList.forEach(function(post) { %>
+  <h1> <%= post.title %> </h1>
+  <p style="display: inline"> <%= post.contentText.substring(0,100)+" ..." %> </p>
+  <a id="readMore" href="/posts/<%= post._id %>">Read more</a>
+<% }); %>
+
+<%- include("partials/footer") -%>
