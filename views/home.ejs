@@ -1,12 +1,33 @@
 <%- include("partials/header") -%>
 
+<form action="<%= formRoute %>" method="post" style="position: absolute; right: 100px">
+  <input type="text" name="search" placeholder="Search">
+  <button type="submit"><img src="/images/search.png" width="20px" height="20px"/></button>
+</form>
+
 <h1> <%= title %> </h1>
 <p> <%= startingContent %> </p>
 
 <% postList.forEach(function(post) { %>
+  <hr />
   <h1> <%= post.title %> </h1>
   <p style="display: inline"> <%= post.contentText.substring(0,100)+" ..." %> </p>
-  <a id="readMore" href="/posts/<%= post._id %>">Read more</a>
+  <a href="<%= linkRoute %>/<%= post._id %>"> <%= linkAction %> </a>
+  <br /><br />
+  <div class="container">
+    <div class="row" style="position: relative">
+      <div style="display: inline">
+        <% post.tags.split(" ").forEach(function(tag) { %>
+          <a href="/search/[<%=tag%>]" class="btn btn-primary"> <%= tag %> </a>
+        <% }) %>
+      </div>
+      <div style="display: inline; position: absolute; right: 300px">
+        <p style="color: #555555">posted <%= moment(post.timeStamp, "YYYYMMDDHHmmss").fromNow() %></p>
+        <p style="color: #5555ff">by <%= post.author %></p>
+      </div>
+    </div>
+  </div>
+  <hr />
 <% }); %>
 
 <%- include("partials/footer") -%>

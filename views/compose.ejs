@@ -4,16 +4,18 @@
   <form action="/compose" method="post" style="margin-top: 10px">
 
     <div class="form-group">
-      <label for="postTitle">Title</label>
       <input type="hidden" name="Id" value=<%= postId %>>
+      <label for="Title">Title</label>
       <input type="text" name="Title" class="form-control" autocomplete="off" value=<%= title %>>
+      <label for="Tags">Tags</label>
+      <input type="text" name="Tags" class="form-control" autocomplete="off" value=<%= tags %> >
     </div>
 
     <div class="form-group">
       <label for="postContentHTML">Content</label>
       <input type="hidden" name="postContentHTML">
       <input type="hidden" name="postContentText">
-      <div id="editor" style="height: 300px">
+      <div id="editor" style="height: 500px">
         <%- content %>
       </div>
     </div>

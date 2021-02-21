@@ -1,6 +1,22 @@
 <%- include("partials/header") -%>
 
-<h1> <%= heading %> </h1>
-<div> <%- content %> </div>
+<h1> <%= post.title %> </h1>
+<div> <%- post.contentHTML %> </div>
+
+<br /><br /><br /><br />
+
+<div class="container">
+  <div class="row" style="position: relative">
+    <div style="display: inline">
+      <% post.tags.split(" ").forEach(function(tag) { %>
+        <a href="/search/[<%=tag%>]" class="btn btn-primary"> <%= tag %> </a>
+      <% }) %>
+    </div>
+    <div style="display: inline; position: absolute; right: 300px">
+      <p style="color: #555555">posted <%= moment(post.timeStamp, "YYYYMMDDHHmmss").fromNow() %></p>
+      <p style="color: #5555ff">by <%= post.author %></p>
+    </div>
+  </div>
+</div>
 
 <%- include("partials/footer") -%>
