@@ -1,6 +1,6 @@
 # Blog website App
 
-A Blog App to create posts. Posts are composed using rich text editor (quill.js). Format text and add images to posts.
+A Blog App to create posts. Posts are composed using rich text editor (quill.js). User can format text and add images to posts.
 
 Used Node.js and mongodb.
 
