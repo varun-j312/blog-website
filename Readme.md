@@ -5,7 +5,7 @@ A Blog App to create posts. Posts are composed using rich text editor (quill.js)
 Used Node.js and mongodb.
 
 ![homepage](./homepage.png "homepage")
-![postpage](./postpage.png "homepage")
+![editpage](./editpage.png "editpage")
 
 ---
 
@@ -23,4 +23,5 @@ Used Node.js and mongodb.
 
 ## Architecture and process flow diagram
 
+![architecture-diagram](./architecture.png)
 ![flow-diagram](./flow-diagram.png)
